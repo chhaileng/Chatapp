@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="About Us"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:textSize="22dp"
+        android:id="@+id/textViewAboutUs" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDevBy"
+        android:layout_below="@+id/textViewAboutUs"
+        android:text="Developed by Group E2 Year 3\n"
+        android:textAlignment="center"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewDevBy">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageChhaileng"
+                android:src="@drawable/chhaileng"
+                android:layout_marginTop="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Peng Chhaileng\n"
+                android:layout_below="@+id/imageChhaileng"
+                android:textAlignment="center"
+                android:textSize="24dp"
+                android:id="@+id/txtChhaileng" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageKoun"
+                android:src="@drawable/koun"
+                android:layout_below="@+id/txtChhaileng" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ty Kimkoun\n"
+                android:layout_below="@+id/imageKoun"
+                android:textAlignment="center"
+                android:textSize="24dp"
+                android:id="@+id/txtKoun" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageTy"
+                android:src="@drawable/ty"
+                android:layout_below="@+id/txtKoun" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seng Ty\n"
+                android:layout_below="@+id/imageTy"
+                android:textAlignment="center"
+                android:textSize="24dp"
+                android:id="@+id/txtTy" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageTola"
+                android:src="@drawable/tola"
+                android:layout_below="@+id/txtTy" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thorn Tola\n"
+                android:layout_below="@+id/imageTola"
+                android:textAlignment="center"
+                android:textSize="24dp"
+                android:id="@+id/txtTola" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTola"
+                android:text="Copyright 2017 | Royal University of Phnom Penh\n"
+                android:textAlignment="center"/>
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

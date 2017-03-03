@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "812411447649",
+    "firebase_url": "https://chatapp-7d045.firebaseio.com",
+    "project_id": "chatapp-7d045",
+    "storage_bucket": "chatapp-7d045.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812411447649:android:42bd3cab4e2c04f5",
+        "android_client_info": {
+          "package_name": "com.neakit.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812411447649-uiaumc6jmfn2qola8a3k02am5d67doh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNLH1CadYvwLrpl-3mw6Zt2MZ6xp4al9A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
