@@ -31,9 +31,8 @@ public class SettingFragment extends Fragment {
 
     String defaultName = "Chhaileng";
 
-//    DatabaseHandler db = new DatabaseHandler(getContext());
-//    User a = new User("2","ff","mmm","qqq");
-//    defaultName = a.getName();
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,10 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.setting_fragment, container,false);
+
+        DatabaseHandler db = new DatabaseHandler(getContext());
+        User a = db.getUser(1);
+        defaultName = a.getName();
 
         getActivity().setTitle("Setting");
 

@@ -44,7 +44,7 @@ public class ChatFragment extends Fragment {
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_rooms = new ArrayList<>();
 
-    private String name = "Chhaileng";
+    //private String name = "Chhaileng";
 
 
 
@@ -124,7 +124,7 @@ public class ChatFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(),ChatRoom.class);
                 intent.putExtra("room_name",((TextView)view).getText().toString());
-                intent.putExtra("user_name",name);
+                //intent.putExtra("user_name",name);
                 startActivity(intent);
             }
         });

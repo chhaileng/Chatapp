@@ -182,6 +182,7 @@ public class Login extends AppCompatActivity {
         }
         return "";
     }
+
     public int countUser(){
         DatabaseHandler db = new DatabaseHandler(this);
         List<User> aa = db.getAllUsers();
