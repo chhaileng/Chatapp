@@ -22,6 +22,7 @@
         <activity android:name=".ChatRoom"/>
         <activity android:name=".About"/>
         <activity android:name=".DeveloperArea"/>
+        <activity android:name=".ChangePassword"/>
 
     </application>
 

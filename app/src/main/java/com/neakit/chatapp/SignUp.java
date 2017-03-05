@@ -1,6 +1,5 @@
 package com.neakit.chatapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        this.setTitle("Sign Up");
+        this.setTitle("SignUp");
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -51,7 +50,7 @@ public class SignUp extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etPassword.getText().toString().length() > 6) {
+                if (etPassword.getText().toString().length() >= 6) {
                     if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {
 //                        Toast.makeText(SignUp.this, "GOGOG", Toast.LENGTH_SHORT).show();
                         String url = "http://api.chhaileng.info/signup.php?key=javaproject-chat23L2JLJ32JG39H2";
@@ -62,10 +61,11 @@ public class SignUp extends AppCompatActivity {
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
-                                        Toast.makeText(SignUp.this, response + "", Toast.LENGTH_LONG).show();
+                                        // Toast.makeText(SignUp.this, response + "", Toast.LENGTH_LONG).show();
                                         if (response.contains("success")){
-                                            startActivity(new Intent(SignUp.this,Login.class));
-                                            Toast.makeText(SignUp.this, "success", Toast.LENGTH_SHORT).show();
+                                            // startActivity(new Intent(SignUp.this,Login.class));
+                                            onBackPressed();
+                                            Toast.makeText(SignUp.this, "Success", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 },
@@ -81,7 +81,7 @@ public class SignUp extends AppCompatActivity {
                                 Map<String, String> params = new HashMap<String, String>();
                                 params.put("username",etUsername.getText().toString());
                                 params.put("email",etEmail.getText().toString());
-                                params.put("password",md5(etPassword.getText().toString()));
+                                params.put("password",Encryption.md5(etPassword.getText().toString()));
 
                                 return params;
                             }
@@ -107,13 +107,19 @@ public class SignUp extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUp.this, Login.class) );
+                // startActivity(new Intent(SignUp.this, Login.class) );
+                onBackPressed();
             }
         });
 
     }
     //end of onCreate method
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     public static final String md5(final String s) {
         final String MD5 = "MD5";

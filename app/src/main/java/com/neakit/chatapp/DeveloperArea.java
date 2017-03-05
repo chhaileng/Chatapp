@@ -22,6 +22,7 @@ public class DeveloperArea extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.developerarea);
 
+
         final TextView textContact = (TextView) findViewById(R.id.textContact);
         final EditText etName = (EditText) findViewById(R.id.etName);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
@@ -31,7 +32,7 @@ public class DeveloperArea extends Activity {
         final DatabaseHandler db = new DatabaseHandler(this);
 
         List<User> aa = db.getAllUsers();
-        textContact.setText("");
+        textContact.setText("Local Database Viewer\n");
 
         for (User cn : aa) {
             textContact.append("No. : " + cn.getID()+"\n");
@@ -52,13 +53,14 @@ public class DeveloperArea extends Activity {
             @Override
             public void onClick(View view) {
                 List<User> dd = db.getAllUsers();
-                textContact.setText("");
+                //textContact.setText("");
                 for (User cn : dd) {
                     if (cn.getID() == Integer.parseInt(etName.getText().toString())) {
                         db.deleteUser(cn);
                     }
                 }
                 List<User> users = db.getAllUsers();
+                textContact.setText("Local Database Viewer\n");
                 for (User cn : users) {
                     textContact.append("No. : " + cn.getID()+"\n");
                     textContact.append("ID: " + cn.getUid()+"\n");
@@ -77,9 +79,9 @@ public class DeveloperArea extends Activity {
             @Override
             public void onClick(View view) {
                 List<User> users = db.getAllUsers();
-                textContact.setText("");
+                textContact.setText("Local Database Viewer\n");
 
-                db.updateUser(new User(1,"9",etName.getText().toString(),etEmail.getText().toString(),"NewP@$sW0rD"));
+                db.updateUser(new User(1,"1",etName.getText().toString(),etEmail.getText().toString(),"NewP@$sW0rD"));
 
 
                 List<User> aa = db.getAllUsers();

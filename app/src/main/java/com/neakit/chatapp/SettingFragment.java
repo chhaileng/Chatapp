@@ -1,14 +1,19 @@
 package com.neakit.chatapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,44 +70,45 @@ public class SettingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                if (position == 0) {
-//                    AlertDialog.Builder askProfile = new AlertDialog.Builder(getContext());
-//                    askProfile.setTitle("Enter new name: ");
-//
-//                    final EditText profile = new EditText(getContext());
-//                    profile.setText(tvProfileName.getText().toString());
-//                    askProfile.setView(profile);
-//
-//                    askProfile.setPositiveButton("Change", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            tvProfileName.setText(profile.getText().toString());
-//                            defaultName = profile.getText().toString();
-//
-//                        }
-//                    });
-//
-//                    askProfile.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public  void onClick(DialogInterface dialogInterface, int i) {
-//                            // bleh
-//                        }
-//                    });
-//
-//                    askProfile.show();
-//
-//                }
                 if (position == 0) {
-                    Toast.makeText(getContext(), "Change Password", Toast.LENGTH_SHORT).show();
+                    final AlertDialog.Builder changePw = new AlertDialog.Builder(getContext());
+                    changePw.setTitle("Enter your old password");
+                    final EditText old = new EditText(getContext());
+                    old.setHint("Old Password");
+                    old.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    old.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    changePw.setView(old);
+
+                    changePw.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            DatabaseHandler db = new DatabaseHandler(getContext());
+                            User aa = db.getUser(1);
+                            if (Encryption.md5(old.getText().toString()).equals(aa.getPassword())) {
+                                Intent intent = new Intent(getContext(),ChangePassword.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Toast.makeText(getContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    changePw.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public  void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(getContext(), "Password is not changed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    changePw.show();
                 }
                 else if (position == 1) {
-                    //Toast.makeText(getContext(), "About", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(),About.class);
                     startActivity(intent);
                 }
                 else if (position == 2) {
                     Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-
                     DatabaseHandler db = new DatabaseHandler(getContext());
                     List<User> dd = db.getAllUsers();
                     for (User cn : dd) {
@@ -115,15 +121,37 @@ public class SettingFragment extends Fragment {
                     startActivity(intent);
                 }
                 else if (position == 3) {
-                    Intent intent = new Intent(getContext(),DeveloperArea.class);
-                    startActivity(intent);
+                    AlertDialog.Builder askAuth = new AlertDialog.Builder(getContext());
+                    askAuth.setTitle("Enter Developer Password");
+                    final EditText pw = new EditText(getContext());
+                    pw.setHint("Password");
+                    pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    askAuth.setView(pw);
+
+                    askAuth.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (Encryption.md5(pw.getText().toString()).equals("2a16a013045dae9a66401eb607faf1c6")){
+                                Intent intent = new Intent(getContext(),DeveloperArea.class);
+                                startActivity(intent);
+                            }
+                            else
+                                Toast.makeText(getContext(), "Developer Password Incorrect", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    askAuth.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public  void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+
+                    askAuth.show();
                 }
-
-
             }
         });
-
-
         return v;
     }
+    // end override method
 }

@@ -18,8 +18,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -41,7 +39,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        this.setTitle("Sign In");
+        this.setTitle("SignIn");
 
         tvCreateNewAccount = (TextView)findViewById(R.id.tvCreateNewAccount);
         etEmail = (EditText)findViewById(R.id.etEmail);
@@ -51,7 +49,6 @@ public class Login extends AppCompatActivity {
         final DatabaseHandler db = new DatabaseHandler(this);
 
         if (countUser() == 1) {
-
             List<User> aa = db.getAllUsers();
             String user="";
             for (User a : aa) {
@@ -62,7 +59,6 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
             Toast.makeText(this, "Welcome "+ user, Toast.LENGTH_SHORT).show();
-
         }
 
         // Developer account Default
@@ -89,24 +85,20 @@ public class Login extends AppCompatActivity {
                                     for ( int i = 0; i < response.length(); i++ ) {
                                         JSONObject obj = response.getJSONObject(i);
                                         if (etEmail.getText().toString().equals(obj.getString("user_email"))
-                                                && md5(etPassword.getText().toString()).equals(obj.getString("user_password"))) {
-
+                                                && Encryption.md5(etPassword.getText().toString()).equals(obj.getString("user_password"))) {
 
                                             Intent intent = new Intent(Login.this,MainActivity.class);
                                             intent.putExtra("user_name",obj.getString("user_name"));
                                             startActivity(intent);
 
-                                            //startActivity(new Intent(Login.this, MainActivity.class));
                                             Toast.makeText(Login.this, "Welcome "+obj.getString("user_name"), Toast.LENGTH_LONG).show();
                                             isSignIn = true;
 
-                                                // add new
+                                                // save session to local db
                                                 db.addUser(new User(obj.getString("user_id"),
                                                                     obj.getString("user_name"),
                                                                     obj.getString("user_email"),
-                                                                    etPassword.getText().toString()));
-
-
+                                                                    obj.getString("user_password")));
                                             break;
                                         }
                                     }
@@ -115,7 +107,7 @@ public class Login extends AppCompatActivity {
                                     }
 
                                 } catch ( Exception ex ) {
-                                    Toast.makeText(Login.this, "What?", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(Login.this, "What?", Toast.LENGTH_SHORT).show();
                                     ex.printStackTrace();
                                 }
 
@@ -128,59 +120,24 @@ public class Login extends AppCompatActivity {
                             }
                         }
                 );
-
                 MySingleton.getInstance(Login.this).addToRequestQueue(request);
-
             }
         });
 
+        // Sign up click
         tvCreateNewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this, SignUp.class) );
-                //Toast.makeText(Login.this, "Siup", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
     // end onCreate method
 
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
-        startActivity(intent);
-        finish();
-        System.exit(0);
-    }
-
-    public static final String md5(final String s) {
-        final String MD5 = "MD5";
-        try {
-            // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest
-                    .getInstance(MD5);
-            digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
-
-            // Create Hex String
-            StringBuilder hexString = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                String h = Integer.toHexString(0xFF & aMessageDigest);
-                while (h.length() < 2)
-                    h = "0" + h;
-                hexString.append(h);
-            }
-            return hexString.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
+        moveTaskToBack(true);
     }
 
     public int countUser(){
