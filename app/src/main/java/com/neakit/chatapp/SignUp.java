@@ -84,15 +84,22 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 // check email
                 boolean exist = false;
-                for (String mail : registeredEmail) {
-                    if (mail.equals(etEmail.getText().toString())){
-                        // Toast.makeText(SignUp.this, "Email is exist", Toast.LENGTH_SHORT).show();
-                        exist = true;
-                        break;
+                boolean isEmail = true;
+                if (MyValidator.isValidEmail(etEmail.getText().toString())) {
+                    for (String mail : registeredEmail) {
+                        if (mail.equals(etEmail.getText().toString())) {
+                            // Toast.makeText(SignUp.this, "Email is exist", Toast.LENGTH_SHORT).show();
+                            exist = true;
+                            break;
 
+                        }
                     }
                 }
-
+                else {
+                    Toast.makeText(SignUp.this, "Email is invalid.", Toast.LENGTH_SHORT).show();
+                    exist = true;
+                    isEmail = false;
+                }
                 if (exist == false) {
                     if (etPassword.getText().toString().length() >= 6) {
                         if (etPassword.getText().toString().equals(etRePassword.getText().toString())) {
@@ -138,7 +145,8 @@ public class SignUp extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(SignUp.this, "Email Address is already registered.", Toast.LENGTH_SHORT).show();
+                    if (isEmail != false)
+                        Toast.makeText(SignUp.this, "Email Address is already registered.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
