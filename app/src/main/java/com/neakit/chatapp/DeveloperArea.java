@@ -35,7 +35,7 @@ public class DeveloperArea extends Activity {
         textContact.setText("Local Database Viewer\n");
 
         for (User cn : aa) {
-            textContact.append("No. : " + cn.getID()+"\n");
+            textContact.append("No: " + cn.getID()+"\n");
             textContact.append("ID: " + cn.getUid()+"\n");
             textContact.append("Name: " + cn.getName()+"\n");
             textContact.append("Email: " + cn.getEmail()+"\n");
@@ -62,7 +62,7 @@ public class DeveloperArea extends Activity {
                 List<User> users = db.getAllUsers();
                 textContact.setText("Local Database Viewer\n");
                 for (User cn : users) {
-                    textContact.append("No. : " + cn.getID()+"\n");
+                    textContact.append("No: " + cn.getID()+"\n");
                     textContact.append("ID: " + cn.getUid()+"\n");
                     textContact.append("Name: " + cn.getName()+"\n");
                     textContact.append("Email: " + cn.getEmail()+"\n");
@@ -86,7 +86,7 @@ public class DeveloperArea extends Activity {
 
                 List<User> aa = db.getAllUsers();
                 for (User cn : aa) {
-                    textContact.append("No. : " + cn.getID()+"\n");
+                    textContact.append("No: " + cn.getID()+"\n");
                     textContact.append("ID: " + cn.getUid()+"\n");
                     textContact.append("Name: " + cn.getName()+"\n");
                     textContact.append("Email: " + cn.getEmail()+"\n");

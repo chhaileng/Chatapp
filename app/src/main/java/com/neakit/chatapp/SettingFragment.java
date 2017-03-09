@@ -108,17 +108,33 @@ public class SettingFragment extends Fragment {
                     startActivity(intent);
                 }
                 else if (position == 2) {
-                    Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-                    DatabaseHandler db = new DatabaseHandler(getContext());
-                    List<User> dd = db.getAllUsers();
-                    for (User cn : dd) {
-                        if (cn.getID() == 1) {
-                            db.deleteUser(cn);
-                        }
-                    }
+                    AlertDialog.Builder askLogout = new AlertDialog.Builder(getContext());
+                    askLogout.setTitle("Are you sure to log out?");
+                    askLogout.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
+                            DatabaseHandler db = new DatabaseHandler(getContext());
+                            List<User> dd = db.getAllUsers();
+                            for (User cn : dd) {
+                                if (cn.getID() == 1) {
+                                    db.deleteUser(cn);
+                                }
+                            }
 
-                    Intent intent = new Intent(getContext(),Login.class);
-                    startActivity(intent);
+                            Intent intent = new Intent(getContext(),Login.class);
+                            startActivity(intent);
+                        }
+                    });
+
+                    askLogout.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public  void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+
+                    askLogout.show();
                 }
                 else if (position == 3) {
                     AlertDialog.Builder askAuth = new AlertDialog.Builder(getContext());

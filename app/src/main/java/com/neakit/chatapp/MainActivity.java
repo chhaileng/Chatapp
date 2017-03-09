@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarBadge;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 /**
@@ -47,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mBottomBar.mapColorForTab(0,"#ff0000");
-        mBottomBar.mapColorForTab(1,"#ff0000");
+        //mBottomBar.mapColorForTab(0,"#ff0000");
+        //mBottomBar.mapColorForTab(1,"#ff0000");
 
-        BottomBarBadge unread;
-        unread = mBottomBar.makeBadgeForTabAt(0,"#ff0000",10);
-        unread.show();
+//        BottomBarBadge unread;
+//        unread = mBottomBar.makeBadgeForTabAt(0,"#ff0000",10);
+//        unread.show();
 
     }
 

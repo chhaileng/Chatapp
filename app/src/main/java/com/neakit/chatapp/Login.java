@@ -59,14 +59,13 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
             Toast.makeText(this, "Welcome "+ user, Toast.LENGTH_SHORT).show();
+
+            //Intent intent = new Intent(Login.this,DeveloperArea.class);
+            //startActivity(intent);
+
+
         }
 
-        // Developer account Default
-
-//        etEmail.setText("a");
-//        etPassword.setText("a");
-
-        // End of Developer
 
         final String url = "http://api.chhaileng.info/signin.php?key=java-is-love-20170228";
 
@@ -104,6 +103,7 @@ public class Login extends AppCompatActivity {
                                     }
                                     if (isSignIn == false){
                                         Toast.makeText(Login.this, "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
+                                        etPassword.setText("");
                                     }
 
                                 } catch ( Exception ex ) {
