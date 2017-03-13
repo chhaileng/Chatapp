@@ -116,9 +116,10 @@ public class ChatRoom extends AppCompatActivity {
             chat_user_name = (String) ((DataSnapshot)i.next()).getValue();
 
             chat_conversation.append(chat_user_name +" : "+chat_msg +" \n");
-            // chat_conversation.append("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
-            // chat_conversation.append("____________________________________\n\n");
-            chat_conversation.append("---------------------------------------------------------------\n");
+
+            chat_conversation.append("---------------------------------------------------------------\n"); // original
+            // chat_conversation.append("------------------------------------------------------\n"); // tola phone
+            // chat_conversation.append("------------------------------\n"); // koun phone
         }
     }
 }

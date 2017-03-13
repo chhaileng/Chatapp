@@ -29,8 +29,7 @@ public class SettingFragment extends Fragment {
 
     private static String[] items = {"Change Password",
                                      "About",
-                                     "Logout",
-                                     "Developer Area"};
+                                     "Logout"};
     ListView lstSetting;
     private TextView tvProfileName;
 
@@ -136,35 +135,35 @@ public class SettingFragment extends Fragment {
 
                     askLogout.show();
                 }
-                else if (position == 3) {
-                    AlertDialog.Builder askAuth = new AlertDialog.Builder(getContext());
-                    askAuth.setTitle("Enter Developer Password");
-                    final EditText pw = new EditText(getContext());
-                    pw.setHint("Password");
-                    pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    askAuth.setView(pw);
-
-                    askAuth.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            if (Encryption.md5(pw.getText().toString()).equals("2a16a013045dae9a66401eb607faf1c6")){
-                                Intent intent = new Intent(getContext(),DeveloperArea.class);
-                                startActivity(intent);
-                            }
-                            else
-                                Toast.makeText(getContext(), "Developer Password Incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    askAuth.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public  void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-
-                    askAuth.show();
-                }
+//                else if (position == 3) {
+//                    AlertDialog.Builder askAuth = new AlertDialog.Builder(getContext());
+//                    askAuth.setTitle("Enter Developer Password");
+//                    final EditText pw = new EditText(getContext());
+//                    pw.setHint("Password");
+//                    pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                    pw.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//                    askAuth.setView(pw);
+//
+//                    askAuth.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            if (Encryption.md5(pw.getText().toString()).equals("2a16a013045dae9a66401eb607faf1c6")){
+//                                Intent intent = new Intent(getContext(),DeveloperArea.class);
+//                                startActivity(intent);
+//                            }
+//                            else
+//                                Toast.makeText(getContext(), "Developer Password Incorrect", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//                    askAuth.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public  void onClick(DialogInterface dialogInterface, int i) {
+//                        }
+//                    });
+//
+//                    askAuth.show();
+//                }
             }
         });
         return v;
