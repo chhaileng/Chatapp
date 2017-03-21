@@ -52,6 +52,7 @@ public class SignUp extends AppCompatActivity {
 
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
+        // get all registered email store in array list
         JsonArrayRequest reqst = new JsonArrayRequest(
                 Request.Method.GET,
                 "http://api.chhaileng.info/signin.php?key=java-is-love-20170228",
@@ -85,6 +86,7 @@ public class SignUp extends AppCompatActivity {
                 // check email
                 boolean exist = false;
                 boolean isEmail = true;
+
                 if (MyValidator.isValidEmail(etEmail.getText().toString())) {
                     for (String mail : registeredEmail) {
                         if (mail.equals(etEmail.getText().toString())) {

@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
 
         final DatabaseHandler db = new DatabaseHandler(this);
 
+        // check user in local database
         if (countUser() == 1) {
             List<User> aa = db.getAllUsers();
             String user="";
@@ -69,6 +70,7 @@ public class Login extends AppCompatActivity {
 
         final String url = "http://api.chhaileng.info/signin.php?key=java-is-love-20170228";
 
+        // Login button press
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
